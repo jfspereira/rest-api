@@ -1,0 +1,4 @@
+com\cofco\webservice\controller\TempId.class
+com\cofco\webservice\controller\CompanyControllerTest.class
+com\cofco\webservice\controller\CrudTest.class
+com\cofco\webservice\controller\OwnerControllerTest.class

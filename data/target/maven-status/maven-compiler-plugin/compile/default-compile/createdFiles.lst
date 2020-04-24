@@ -1,0 +1,4 @@
+com\cofco\data\entity\Owner.class
+com\cofco\data\entity\Company.class
+com\cofco\data\repository\OwnerRepository.class
+com\cofco\data\repository\CompanyRepository.class

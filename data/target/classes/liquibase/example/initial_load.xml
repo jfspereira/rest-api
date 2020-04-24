@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd">
+
+    <!-- Initial load of example tables -->
+    <changeSet id="company-01" author="Jorge Pereira">
+
+        <createTable tableName="company">
+            <column name="id" autoIncrement="true" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="address" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="city" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="country" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="email" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="name" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="phone_number" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <addPrimaryKey
+                columnNames="id"
+                constraintName="pk_company__id"
+                tableName="company"/>
+    </changeSet>
+
+
+    <!-- owner table -->
+    <changeSet id="owner-01" author="Jorge Pereira">
+        <createTable tableName="owner">
+            <column name="id" autoIncrement="true" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="name" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="title" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <addPrimaryKey
+                columnNames="id"
+                constraintName="pk_owner__id"
+                tableName="owner"/>
+    </changeSet>
+
+
+    <!-- company_owner table -->
+    <changeSet id="company_owner-01" author="Jorge Pereira">
+        <createTable tableName="company_owner">
+            <column name="company_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="owner_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addForeignKeyConstraint baseTableName="company_owner"
+                                 baseColumnNames="company_id"
+                                 constraintName="fk_company_owner__company_id"
+                                 referencedTableName="company"
+                                 referencedColumnNames="id"/>
+
+        <addForeignKeyConstraint baseTableName="company_owner"
+                                 baseColumnNames="owner_id"
+                                 constraintName="fk_company_owner__owner_id"
+                                 referencedTableName="owner"
+                                 referencedColumnNames="id"/>
+    </changeSet>
+
+</databaseChangeLog>
