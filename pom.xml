@@ -19,6 +19,7 @@
         <app.version>1.0-SNAPSHOT</app.version>
         <java.version>1.8</java.version>
         <liquibase.verbose.mode>false</liquibase.verbose.mode>
+        <env.jdbc.database.url>jdbc:postgresql://db:5432/test-api</env.jdbc.database.url>
     </properties>
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -34,6 +35,8 @@
                     <artifactId>liquibase-maven-plugin</artifactId>
                     <version>${liquibase.version}</version>
                     <configuration>
+                        <changeLogFile>src/main/resources/liquibase/changelog-master.xml</changeLogFile>
+                        <url>${env.jdbc.database.url}</url>
                         <defaultSchemaName>public</defaultSchemaName>
                         <logging>INFO</logging>
                         <verbose>${liquibase.verbose.mode}</verbose>

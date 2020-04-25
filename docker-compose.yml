@@ -1,20 +1,19 @@
 version: "3.4"
 services:
   db:
-    image: postgres:latest
-    container_name: postgres
-    volumes:
-      - postgres-data:/var/lib/postgresql/data
-    expose:
-      - 5432
-    ports:
-      - 5432:5432
+    image: postgres:9.6
+    restart: always
     environment:
       - POSTGRES_PASSWORD=1234
       - POSTGRES_USER=postgres
       - POSTGRES_DB=test-api
       - PGDATA=/var/lib/postgresql/data/pgdata
-    restart: always
+    volumes:
+      - /var/lib/postgresql/data
+    ports:
+      - '5432:5432'
+    networks:
+      - webnet
   pgadmin:
     image: dpage/pgadmin4
     ports:
@@ -23,13 +22,19 @@ services:
       - PGADMIN_DEFAULT_EMAIL=admin@mydomain.com
       - PGADMIN_DEFAULT_PASSWORD=postgres
       - PGADMIN_LISTEN_PORT=5454
+    networks:
+      - webnet
   # APP*****************************************
-  springbootapp:
+  rest-api:
     build: .
     container_name: rest-api
+    networks:
+      - webnet
     ports:
       - 8080:8080
     depends_on:
       - db
 volumes:
-  postgres-data:
+  db:
+networks:
+  webnet:

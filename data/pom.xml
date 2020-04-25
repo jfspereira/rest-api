@@ -35,7 +35,7 @@
                             <execution>
                                 <configuration>
                                     <changeLogFile>src/main/resources/liquibase/changelog-master.xml</changeLogFile>
-                                    <url>jdbc:postgresql://172.19.0.2:5432/test-api</url>
+                                    <url>${env.jdbc.database.url}</url>
                                     <defaultSchemaName>public</defaultSchemaName>
                                     <username>postgres</username>
                                     <password>1234</password>
