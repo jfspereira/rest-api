@@ -26,7 +26,7 @@ import java.util.stream.Collectors;
  */
 @Service
 @Transactional
-public class CompanyService extends AbstractService<CompanyDto, Long,Company, Long> implements CrudService<CompanyDto, Long> {
+public class CompanyService extends AbstractService<CompanyDto, Long, Company, Long> implements CrudService<CompanyDto, Long> {
 
     @Autowired
     private CompanyRepository companyRepository;

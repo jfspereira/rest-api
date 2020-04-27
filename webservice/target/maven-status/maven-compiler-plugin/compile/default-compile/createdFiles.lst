@@ -4,7 +4,6 @@ com\cofco\webservice\controller\base\CrudController.class
 com\cofco\webservice\controller\example\impl\base\AbstractController.class
 com\cofco\webservice\controller\example\impl\GreetingControllerImpl.class
 com\cofco\webservice\controller\example\CompanyController.class
-com\cofco\webservice\constant\Constant.class
 com\cofco\webservice\controller\example\impl\CompanyControllerImpl.class
 com\cofco\webservice\controller\example\OwnerController.class
 com\cofco\webservice\app\Application.class

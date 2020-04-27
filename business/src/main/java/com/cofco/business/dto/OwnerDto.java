@@ -12,6 +12,7 @@ import java.util.Objects;
 public class OwnerDto extends AbstractBaseId<Long> {
     private String name;
     private String title;
+
     @NotNull
     @Length(min = 1, max = 255)
     public String getName() {

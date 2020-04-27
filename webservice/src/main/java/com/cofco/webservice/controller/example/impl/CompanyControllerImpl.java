@@ -101,6 +101,9 @@ public class CompanyControllerImpl extends AbstractController<CompanyDto, Long> 
         return super.delete(id);
     }
 
+
+
+
     @Override
     @GetMapping(value = "{id}/owner")
     @ApiOperation(value = "Lists all the owners of the company with the given id",response = OwnerDto.class,responseContainer = "list")
@@ -111,7 +114,7 @@ public class CompanyControllerImpl extends AbstractController<CompanyDto, Long> 
     public ResponseEntity owners(@PathVariable("id") Long id) {
         Collection<OwnerDto> list;
         try {
-            CompanyService companyService = (CompanyService) crudService;
+            CompanyService companyService = (CompanyService) this.companyService;
             list = companyService.owners(id);
             getLogger().info("listing resources from {}", this.getClass().getSimpleName());
         } catch (AppRuntimeException exception) {
@@ -131,7 +134,7 @@ public class CompanyControllerImpl extends AbstractController<CompanyDto, Long> 
     public ResponseEntity addNewOwner(@PathVariable("id") Long id, @RequestBody @Valid OwnerDto ownerDto) {
         OwnerDto createdOwner;
         try {
-            CompanyService companyService = (CompanyService) crudService;
+            CompanyService companyService = (CompanyService) this.companyService;
             createdOwner = companyService.addNewOwner(id,ownerDto);
             getLogger().info("listing resources from {}", this.getClass().getSimpleName());
         } catch (AppRuntimeException exception) {
@@ -152,7 +155,7 @@ public class CompanyControllerImpl extends AbstractController<CompanyDto, Long> 
     })
     public ResponseEntity addOwner(@PathVariable("id") Long id, @PathVariable("ownerId") Long ownerId) {
         try {
-            CompanyService companyService = (CompanyService) crudService;
+            CompanyService companyService = (CompanyService) this.companyService;
             companyService.addOwner(id,ownerId);
             getLogger().info("listing resources from {}", this.getClass().getSimpleName());
         } catch (AppRuntimeException exception) {
@@ -173,7 +176,7 @@ public class CompanyControllerImpl extends AbstractController<CompanyDto, Long> 
     })
     public ResponseEntity removeOwner(@PathVariable("id") Long id, @PathVariable("ownerId") Long ownerId) {
         try {
-            CompanyService companyService = (CompanyService) crudService;
+            CompanyService companyService = (CompanyService) this.companyService;
             companyService.removeOwner(id,ownerId);
             getLogger().info("listing resources from {}", this.getClass().getSimpleName());
         } catch (AppRuntimeException exception) {

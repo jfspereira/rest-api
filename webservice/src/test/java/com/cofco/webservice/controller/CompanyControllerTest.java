@@ -36,9 +36,6 @@ public class CompanyControllerTest implements CrudTest {
 
     @Autowired
     TempId tempId;
-
-
-
     private CompanyDto company = new CompanyDto()
             .setAddress("Some street")
             .setCity("Some city")

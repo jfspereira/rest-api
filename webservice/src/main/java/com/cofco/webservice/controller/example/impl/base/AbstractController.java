@@ -28,12 +28,12 @@ import java.util.Optional;
  */
 public abstract class AbstractController<T extends AbstractBaseId<Y>,Y extends Serializable> implements CrudController<T,Y> {
 
-    protected CrudService<T,Y> crudService;
+    protected CrudService<T,Y> companyService;
 
     protected abstract Logger getLogger();
 
     public AbstractController(CrudService<T, Y> crudService) {
-        this.crudService = crudService;
+        this.companyService = crudService;
     }
 
 
@@ -42,7 +42,7 @@ public abstract class AbstractController<T extends AbstractBaseId<Y>,Y extends S
     public ResponseEntity read(@PathVariable("id") Y id) {
         Optional<T> t;
         try {
-            t = crudService.read(id);
+            t = companyService.read(id);
             getLogger().info("read by id = {} from {}",id,this.getClass().getSimpleName());
         } catch (AppRuntimeException exception){
             getLogger().warn("failed to execute service {} with id={} with exception {}",
@@ -58,7 +58,7 @@ public abstract class AbstractController<T extends AbstractBaseId<Y>,Y extends S
     public ResponseEntity<Collection<T>> list() {
         Collection<T> list;
         try {
-            list = crudService.list();
+            list = companyService.list();
             getLogger().info("listing resources from {}", this.getClass().getSimpleName());
         } catch (AppRuntimeException exception) {
             getLogger().warn("failed to execute service {} with id={} with exception {}",
@@ -73,7 +73,7 @@ public abstract class AbstractController<T extends AbstractBaseId<Y>,Y extends S
     public ResponseEntity<T> create(@Valid @RequestBody T dto) {
         T created;
         try {
-            created = crudService.create(dto);
+            created = companyService.create(dto);
             getLogger().info("listing resources from {}", this.getClass().getSimpleName());
         } catch (AppRuntimeException exception) {
             getLogger().warn("failed to execute service {} with id={} with exception {}",
@@ -87,7 +87,7 @@ public abstract class AbstractController<T extends AbstractBaseId<Y>,Y extends S
     @PutMapping(value = "{id}")
     public ResponseEntity<T> update(@PathVariable("id") Y id,@Valid @RequestBody  T dto) {
         try {
-            crudService.update(id,dto);
+            companyService.update(id,dto);
             getLogger().info("listing resources from {}", this.getClass().getSimpleName());
         } catch (AppRuntimeException exception) {
             getLogger().warn("failed to execute service {} with id={} with exception {}",
@@ -101,7 +101,7 @@ public abstract class AbstractController<T extends AbstractBaseId<Y>,Y extends S
     @DeleteMapping(value = "{id}")
     public ResponseEntity<T> delete(@PathVariable("id") Y id) {
         try {
-            crudService.delete(id);
+            companyService.delete(id);
             getLogger().info("listing resources from {}", this.getClass().getSimpleName());
         } catch (AppRuntimeException exception) {
             getLogger().warn("failed to execute service {} with id={} with exception {}",
